@@ -1,27 +1,35 @@
 import * as AWS from 'aws-sdk'
 import FileManager from './file-manager.service'
-import {Credentials} from '../attributes'
+import {Config} from '../attributes'
 
 class SecretsManager {
-  private fileManager = new FileManager()
+  private fileManager: FileManager
 
-  private client: AWS.SecretsManager
+  private credentials: AWS.SharedIniFileCredentials
 
-  private credentials: Credentials
+  private config: Config
 
   constructor() {
-    this.credentials = this.fileManager.readFile('.secretsrc')
-
-    this.client = new AWS.SecretsManager({
-      region: 'eu-central-1',
-      accessKeyId: this.credentials.keyId,
-      secretAccessKey: this.credentials.secretAccessKey,
-    })
+    this.credentials = new AWS.SharedIniFileCredentials()
+    this.fileManager = new FileManager()
+    this.config = JSON.parse(this.fileManager.readFile('.secretsrc'))
   }
 
   public async fetchSecrets() {
-    const response = await this.client.getSecretValue({SecretId: this.credentials.project}).promise()
+    const response = await this.client.getSecretValue({SecretId: this.config.project}).promise()
     return JSON.parse(response.SecretString ?? '')
+  }
+
+  set changeProfile(profile: string) {
+    this.credentials = new AWS.SharedIniFileCredentials({ profile })
+  }
+
+  get client() {
+    return new AWS.SecretsManager({
+      region: 'eu-central-1',
+      accessKeyId: this.credentials.accessKeyId,
+      secretAccessKey: this.credentials.secretAccessKey,
+    })
   }
 }
 
