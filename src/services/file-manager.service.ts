@@ -11,7 +11,16 @@ class FileManager {
   }
 
   public readFile(file: string) {
-    return JSON.parse(fs.readFileSync(file, 'utf8'))
+    return fs.readFileSync(file, 'utf8')
+  }
+
+  public async appendLineIfNotExists(file: string, line: string) {
+    const existedFile = await this.readFile(file)
+    if (existedFile.includes(line)) {
+      return
+    }
+
+    return this.appendLine(file, line)
   }
 }
 

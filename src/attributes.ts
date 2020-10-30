@@ -1,5 +1,3 @@
-export interface Credentials {
-  keyId: string;
-  secretAccessKey: string;
+export interface Config {
   project: string;
 }

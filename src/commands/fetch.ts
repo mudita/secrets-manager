@@ -12,20 +12,31 @@ export default class Fetch extends Command {
 
   static examples = [
     '$ sm-cli fetch',
+    '$ sm-cli fetch -p PROFILE_NAME',
   ]
 
   static flags = {
     help: flags.help({char: 'h'}),
+    // flag with a value (-p, --profile=VALUE)
+    profile: flags.string({
+      char: 'p',
+      description: 'AWS profile name',
+    }),
   }
 
   async run() {
+    const {flags} = this.parse(Fetch)
+
+    if (flags.profile) {
+      this.secretsManager.changeProfile = flags.profile
+    }
+  
     await cli.action.start('starting a process', 'initializing')
 
     const secrets = await this.secretsManager.fetchSecrets()
     const envsList = Object.entries(secrets).map(([key, value]) => `${key}='${value}'`).join('\n')
 
     await this.fileManager.createFile('.env', envsList)
-
     await cli.action.stop('env\'s successfully fetched')
   }
 }
