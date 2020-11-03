@@ -2,6 +2,7 @@ import {Command, flags} from '@oclif/command'
 import cli from 'cli-ux'
 import FileManager from '../services/file-manager.service'
 import SecretsManager from '../services/secrets-manager.service'
+import {Files} from '../constants'
 
 export default class Fetch extends Command {
   private fileManager = new FileManager()
@@ -36,7 +37,7 @@ export default class Fetch extends Command {
     const secrets = await this.secretsManager.fetchSecrets()
     const envsList = Object.entries(secrets).map(([key, value]) => `${key}='${value}'`).join('\n')
 
-    await this.fileManager.createFile('.env', envsList)
+    await this.fileManager.createFile(Files.Env, envsList)
     await cli.action.stop('env\'s successfully fetched')
   }
 }

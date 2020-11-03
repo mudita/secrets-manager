@@ -2,7 +2,7 @@ import {Command, flags} from '@oclif/command'
 import cli from 'cli-ux'
 import FileManager from '../services/file-manager.service'
 import {Config} from '../attributes'
-import {DEFAULT_REGION} from '../constants'
+import {Files, DEFAULT_REGION} from '../constants'
 
 export default class Init extends Command {
   private fileManager = new FileManager()
@@ -46,9 +46,9 @@ export default class Init extends Command {
 
     await cli.action.start('starting a process', 'initializing')
 
-    await this.fileManager.createFile('.secretsrc', credentials)
-    await this.fileManager.appendLineIfNotExists('.gitignore', '.secretsrc')
-    await this.fileManager.appendLineIfNotExists('.gitignore', '.env')
+    await this.fileManager.createFile(Files.Secretsrc, credentials)
+    await this.fileManager.appendLineIfNotExists(Files.Gitignore, Files.Secretsrc)
+    await this.fileManager.appendLineIfNotExists(Files.Gitignore, Files.Env)
 
     await cli.action.stop('secrets manager successfully initialized')
   }

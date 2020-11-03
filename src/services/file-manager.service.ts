@@ -35,8 +35,12 @@ class FileManager {
   public async replaceLine(path: string, line: string) {
     const file = await this.readFile(path)
 
+    const lineKey = line.split('=')[0]
     const tmpArr = file.split('\n')
-    const lineIndex = tmpArr.findIndex(item => item.includes(line))
+    const lineIndex = tmpArr.findIndex(item => {
+      const key = item.split('=')[0]
+      return key === lineKey
+    })
 
     tmpArr.splice(lineIndex, 1, line)
 

@@ -6,14 +6,14 @@ import {variablesKeyFormatter} from '../utils/string.utils'
 import {Variable} from '../attributes'
 import {Files} from '../constants'
 
-export default class Add extends Command {
+export default class Update extends Command {
   private fileManager = new FileManager()
 
-  static description = 'This command used to adding new variant to .env file'
+  static description = 'This command used to update existing variant in .env file'
 
   static examples = [
-    '$ sm-cli add',
-    '$ sm-cli add -k VARIABLE_KEY -v VARIABLE_VALUE',
+    '$ sm-cli update',
+    '$ sm-cli update -k VARIABLE_KEY -v VARIABLE_VALUE',
   ]
 
   static flags = {
@@ -31,11 +31,11 @@ export default class Add extends Command {
   }
 
   async run() {
-    const {flags} = this.parse(Add)
+    const {flags} = this.parse(Update)
     let variable: Partial<Variable> = {}
 
     if (flags.key) {
-      variable.key = variablesKeyFormatter(flags.key.replace(/\s+/g, '_'))
+      variable.key = variablesKeyFormatter(flags.key)
     } else {
       variable.key = variablesKeyFormatter(await cli.prompt('Enter variable key'))
     }
@@ -50,19 +50,19 @@ export default class Add extends Command {
     const keyExistsInFile = await this.fileManager.lineExistsInFile(Files.Env, variable.key!)
 
     if (keyExistsInFile) {
+      this.fileManager.replaceLine(Files.Env, formattedVariable)
+    } else {
       const response = await inquirer.prompt([{
         name: 'replace',
-        message: 'This key already exists in .env. Do you want to replace it?',
+        message: 'This key doesn\'t exists in .env. Do you want to add it?',
         type: 'confirm',
       }])
 
       if (response.replace) {
-        this.fileManager.replaceLine(Files.Env, formattedVariable)
+        await this.fileManager.appendLine(Files.Env, formattedVariable)
       } else {
         this.exit(0)
       }
-    } else {
-      await this.fileManager.appendLine(Files.Env, formattedVariable)
     }
 
     await cli.action.stop(`variable: ${variable.key} successfully added`)
