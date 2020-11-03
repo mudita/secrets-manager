@@ -65,6 +65,6 @@ export default class Update extends Command {
       }
     }
 
-    await cli.action.stop(`variable: ${variable.key} successfully added`)
+    await cli.action.stop(`variable: ${variable.key} successfully updated`)
   }
 }
