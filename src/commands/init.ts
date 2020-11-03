@@ -2,6 +2,7 @@ import {Command, flags} from '@oclif/command'
 import cli from 'cli-ux'
 import FileManager from '../services/file-manager.service'
 import {Config} from '../attributes'
+import {DEFAULT_REGION} from '../constants'
 
 export default class Init extends Command {
   private fileManager = new FileManager()
@@ -10,7 +11,7 @@ export default class Init extends Command {
 
   static examples = [
     '$ sm-cli init',
-    '$ sm-cli init -p PROJECT_NAME',
+    '$ sm-cli init -p PROJECT_NAME -r SECRETS_MANAGER_REGION',
   ]
 
   static flags = {
@@ -20,6 +21,11 @@ export default class Init extends Command {
       char: 'p',
       description: 'Project secrets name',
     }),
+    // flag with a value (-r, --region=VALUE)
+    region: flags.string({
+      char: 'r',
+      description: 'Secrets manager region',
+    })
   }
 
   async run() {
@@ -27,9 +33,15 @@ export default class Init extends Command {
     let credentials: Partial<Config> = {}
 
     if (flags.project) {
-      credentials = flags
+      credentials.project = flags.project
     } else {
       credentials.project = await cli.prompt('Enter project name')
+    }
+
+    if (flags.region) {
+      credentials.region = flags.region
+    } else {
+      credentials.region = await cli.prompt('Enter secrets manager region', { default: DEFAULT_REGION })
     }
 
     await cli.action.start('starting a process', 'initializing')

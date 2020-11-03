@@ -26,7 +26,7 @@ class SecretsManager {
 
   get client() {
     return new AWS.SecretsManager({
-      region: 'eu-central-1',
+      region: this.config.region,
       accessKeyId: this.credentials.accessKeyId,
       secretAccessKey: this.credentials.secretAccessKey,
     })
