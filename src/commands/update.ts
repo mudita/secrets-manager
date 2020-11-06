@@ -32,7 +32,7 @@ export default class Update extends Command {
 
   async run() {
     const {flags} = this.parse(Update)
-    let variable: Partial<Variable> = {}
+    const variable: Partial<Variable> = {}
 
     if (flags.key) {
       variable.key = variablesKeyFormatter(flags.key)

@@ -31,7 +31,7 @@ export default class Fetch extends Command {
     if (flags.profile) {
       this.secretsManager.changeProfile = flags.profile
     }
-  
+
     await cli.action.start('starting a process', 'initializing')
 
     const secrets = await this.secretsManager.fetchSecrets()
