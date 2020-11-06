@@ -21,7 +21,7 @@ $ npm install -g sm-cli
 $ sm-cli COMMAND
 running command...
 $ sm-cli (-v|--version|version)
-sm-cli/0.0.1 darwin-x64 node-v13.7.0
+sm-cli/0.0.1 darwin-x64 node-v13.8.0
 $ sm-cli --help [COMMAND]
 USAGE
   $ sm-cli COMMAND
@@ -30,66 +30,33 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`sm-cli init`](#sm-cli-init)
-* [`sm-cli fetch`](#sm-cli-fetch)
-* [`sm-cli display`](#sm-cli-display)
 * [`sm-cli add`](#sm-cli-add)
-* [`sm-cli update`](#sm-cli-update)
-* [`sm-cli sync`](#sm-cli-sync)
+* [`sm-cli display`](#sm-cli-display)
+* [`sm-cli fetch`](#sm-cli-fetch)
 * [`sm-cli help [COMMAND]`](#sm-cli-help-command)
+* [`sm-cli init`](#sm-cli-init)
+* [`sm-cli sync`](#sm-cli-sync)
+* [`sm-cli update`](#sm-cli-update)
 
-## `sm-cli init`
+## `sm-cli add`
 
-This command used to init the secrets manager in root directory of the project
-
-```
-USAGE
-  $ sm-cli init
-  $ sm-cli init -p project_name -r secrets_manager_region
-
-OPTIONS
-  -h, --help           show CLI help
-  -p, --project=value  AWS secrets manager name
-  -r, --region=value   AWS secrets manager region
-
-EXAMPLE
-  $ sm-cli init
-  Enter project name: project_name
-  Enter secrets manager region: secrets_manager_region
-  $ secrets manager successfully initialized
-
-  or
-
-  $ sm-cli init -p project_name -r secrets_manager_region
-  $ secrets manager successfully initialized
-```
-
-_See code: [src/commands/init.ts](/src/commands/init.ts)_
-
-## `sm-cli fetch`
-
-This command used to fetch the secrets manager data and save it into .env file
+This command used to adding new variant to .env file
 
 ```
 USAGE
-  $ sm-cli fetch
-  $ sm-cli fetch -p profile_name
+  $ sm-cli add
 
 OPTIONS
-  -h, --help           show CLI help
-  -p, --profile=value  AWS credentials profile
+  -h, --help         show CLI help
+  -k, --key=key      variable key
+  -v, --value=value  variable value
 
-EXAMPLE
-  $ sm-cli fetch
-  $ env's successfully fetched
-
-  or
-
-  $ sm-cli fetch -p profile_name
-  $ env's successfully fetched
+EXAMPLES
+  $ sm-cli add
+  $ sm-cli add -k VARIABLE_KEY -v VARIABLE_VALUE
 ```
 
-_See code: [src/commands/fetch.ts](/src/commands/fetch.ts)_
+_See code: [src/commands/add.ts](https://github.com/igorbezsmertnyi/secrets-manager/blob/v0.0.1/src/commands/add.ts)_
 
 ## `sm-cli display`
 
@@ -100,95 +67,32 @@ USAGE
   $ sm-cli display
 
 OPTIONS
-  -h, --help           show CLI help
+  -h, --help  show CLI help
 
 EXAMPLE
   $ sm-cli display
-  KEY          VALUE
-  VARIABLE_KEY VARIABLE_VALUE
-
 ```
 
-_See code: [src/commands/display.ts](/src/commands/display.ts)_
+_See code: [src/commands/display.ts](https://github.com/igorbezsmertnyi/secrets-manager/blob/v0.0.1/src/commands/display.ts)_
 
-## `sm-cli add`
+## `sm-cli fetch`
 
-This command used to adding new variant to .env file
+This command used to fetch the secrets manager data and save it into .env file
 
 ```
 USAGE
-  $ sm-cli add
-  $ sm-cli add -k variable_key -v variable_value
+  $ sm-cli fetch
 
 OPTIONS
-  -h, --help           show CLI help
-  -k, --key            variable name
-  -v, --value          variable value
+  -h, --help             show CLI help
+  -p, --profile=profile  AWS profile name
 
-EXAMPLE
-  $ sm-cli add
-  Enter variable key: variable_key
-  Enter variable value: variable_value
-  variable: variable_key successfully added
-
-  or
-
-  $ sm-cli add -k variable_key -v variable_value
-  variable: variable_key successfully added
+EXAMPLES
+  $ sm-cli fetch
+  $ sm-cli fetch -p PROFILE_NAME
 ```
 
-## `sm-cli update`
-
-This command used to update existing variant in .env file
-
-```
-USAGE
-  $ sm-cli update
-  $ sm-cli update -k variable_key -v variable_value
-
-OPTIONS
-  -h, --help           show CLI help
-  -k, --key            variable name
-  -v, --value          variable value
-
-EXAMPLE
-  $ sm-cli update
-  Enter variable key: variable_key
-  Enter variable value: variable_value
-  variable: variable_key successfully added
-
-  or
-
-  $ sm-cli update -k variable_key -v variable_value
-  variable: variable_key successfully updated
-```
-
-_See code: [src/commands/update.ts](/src/commands/update.ts)_
-
-## `sm-cli sync`
-
-This command used to sync variable from local environment with AWS SecretsManager
-
-```
-USAGE
-  $ sm-cli sync
-  $ sm-cli sync -p profile_name
-
-OPTIONS
-  -h, --help           show CLI help
-  -p, --profile        AWS credentials profile
-
-EXAMPLE
-  $ sm-cli sync
-  env's successfully synced
-
-  or
-
-  $ sm-cli sync -p profile_name
-  env's successfully synced
-```
-
-_See code: [src/commands/sync.ts](/src/commands/sync.ts)_
+_See code: [src/commands/fetch.ts](https://github.com/igorbezsmertnyi/secrets-manager/blob/v0.0.1/src/commands/fetch.ts)_
 
 ## `sm-cli help [COMMAND]`
 
@@ -206,4 +110,63 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src/commands/help.ts)_
+
+## `sm-cli init`
+
+This command used to init the secrets manager in root directory of the project
+
+```
+USAGE
+  $ sm-cli init
+
+OPTIONS
+  -h, --help             show CLI help
+  -p, --project=project  Project secrets name
+  -r, --region=region    Secrets manager region
+
+EXAMPLES
+  $ sm-cli init
+  $ sm-cli init -p PROJECT_NAME -r SECRETS_MANAGER_REGION
+```
+
+_See code: [src/commands/init.ts](https://github.com/igorbezsmertnyi/secrets-manager/blob/v0.0.1/src/commands/init.ts)_
+
+## `sm-cli sync`
+
+This command used to sync variable from local environment with AWS SecretsManager
+
+```
+USAGE
+  $ sm-cli sync
+
+OPTIONS
+  -h, --help             show CLI help
+  -p, --profile=profile  AWS profile name
+
+EXAMPLES
+  $ sm-cli fetch
+  $ sm-cli fetch -p PROFILE_NAME
+```
+
+_See code: [src/commands/sync.ts](https://github.com/igorbezsmertnyi/secrets-manager/blob/v0.0.1/src/commands/sync.ts)_
+
+## `sm-cli update`
+
+This command used to update existing variant in .env file
+
+```
+USAGE
+  $ sm-cli update
+
+OPTIONS
+  -h, --help         show CLI help
+  -k, --key=key      variable key
+  -v, --value=value  variable value
+
+EXAMPLES
+  $ sm-cli update
+  $ sm-cli update -k VARIABLE_KEY -v VARIABLE_VALUE
+```
+
+_See code: [src/commands/update.ts](https://github.com/igorbezsmertnyi/secrets-manager/blob/v0.0.1/src/commands/update.ts)_
 <!-- commandsstop -->
