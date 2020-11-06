@@ -25,12 +25,12 @@ export default class Init extends Command {
     region: flags.string({
       char: 'r',
       description: 'Secrets manager region',
-    })
+    }),
   }
 
   async run() {
     const {flags} = this.parse(Init)
-    let credentials: Partial<Config> = {}
+    const credentials: Partial<Config> = {}
 
     if (flags.project) {
       credentials.project = flags.project
@@ -41,7 +41,7 @@ export default class Init extends Command {
     if (flags.region) {
       credentials.region = flags.region
     } else {
-      credentials.region = await cli.prompt('Enter secrets manager region', { default: DEFAULT_REGION })
+      credentials.region = await cli.prompt('Enter secrets manager region', {default: DEFAULT_REGION})
     }
 
     await cli.action.start('starting a process', 'initializing')
@@ -53,4 +53,3 @@ export default class Init extends Command {
     await cli.action.stop('secrets manager successfully initialized')
   }
 }
-
