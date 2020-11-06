@@ -18,7 +18,7 @@ export default class Display extends Command {
 
   async run() {
     const envsList = await this.fileManager.readFile(Files.Env)
-    const formattedList = envsList.split('\n').map(line => {
+    const formattedList = envsList.split('\n').map((line: string) => {
       const keyValue = line.split('=')
       return { key: keyValue[0], value: keyValue[1] }
     })

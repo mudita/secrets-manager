@@ -37,7 +37,7 @@ class FileManager {
 
     const lineKey = line.split('=')[0]
     const tmpArr = file.split('\n')
-    const lineIndex = tmpArr.findIndex(item => {
+    const lineIndex = tmpArr.findIndex((item: string) => {
       const key = item.split('=')[0]
       return key === lineKey
     })
