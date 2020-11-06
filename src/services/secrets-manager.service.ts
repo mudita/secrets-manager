@@ -19,7 +19,7 @@ class SecretsManager {
   public async syncSecrets(secrets: Record<string, string>) {
     await this.client.updateSecret({
       SecretId: this.config.project,
-      SecretString: JSON.stringify(secrets)
+      SecretString: JSON.stringify(secrets),
     }).promise()
 
     const response = await this.fetchSecrets()
@@ -32,7 +32,7 @@ class SecretsManager {
   }
 
   set changeProfile(profile: string) {
-    this.credentials = new AWS.SharedIniFileCredentials({ profile })
+    this.credentials = new AWS.SharedIniFileCredentials({profile})
   }
 
   get client() {

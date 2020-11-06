@@ -31,13 +31,13 @@ export default class Sync extends Command {
     if (flags.profile) {
       this.secretsManager.changeProfile = flags.profile
     }
-  
+
     await cli.action.start('starting a process', 'initializing')
 
     const envs = await this.fileManager.readFile(Files.Env)
     const formattedEnvs = envs.split('\n').reduce((acc: Record<string, string>, line: string) => {
       const [key, value] = line.split('=')
-      acc[key] = value.replace(/\'/g, '')
+      acc[key] = value.replace(/'/g, '')
       return acc
     }, {})
 

@@ -2,11 +2,11 @@
   "name": "sm-cli",
   "description": "Secrets manager for sharing environment variables",
   "version": "0.0.1",
-  "author": "igorbezsmertnyi @igorbezsmertnyi",
+  "author": "appnroll @igorbezsmertnyi",
   "bin": {
     "sm-cli": "./bin/run"
   },
-  "bugs": "https://github.com/igorbezsmertnyi/secrets-manager/issues",
+  "bugs": "https://github.com/appnroll/secrets-manager/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -32,7 +32,7 @@
     "mocha": "^5.2.0",
     "nyc": "^14.1.1",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.7"
+    "typescript": "^4.0.5"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -43,7 +43,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/igorbezsmertnyi/secrets-manager",
+  "homepage": "https://github.com/appnroll/secrets-manager",
   "keywords": [
     "oclif"
   ],
@@ -56,7 +56,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "igorbezsmertnyi/secrets-manager",
+  "repository": "appnroll/secrets-manager",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",

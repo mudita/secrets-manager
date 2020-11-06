@@ -20,7 +20,7 @@ export default class Display extends Command {
     const envsList = await this.fileManager.readFile(Files.Env)
     const formattedList = envsList.split('\n').map((line: string) => {
       const keyValue = line.split('=')
-      return { key: keyValue[0], value: keyValue[1] }
+      return {key: keyValue[0], value: keyValue[1]}
     })
 
     cli.table(formattedList, {
@@ -28,8 +28,8 @@ export default class Display extends Command {
         header: 'KEY',
       },
       value: {
-        header: 'VALUE'
-      }
+        header: 'VALUE',
+      },
     })
   }
 }

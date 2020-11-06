@@ -32,7 +32,7 @@ export default class Add extends Command {
 
   async run() {
     const {flags} = this.parse(Add)
-    let variable: Partial<Variable> = {}
+    const variable: Partial<Variable> = {}
 
     if (flags.key) {
       variable.key = variablesKeyFormatter(flags.key.replace(/\s+/g, '_'))
