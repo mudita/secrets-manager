@@ -11,8 +11,35 @@ Secrets manager for sharing environment variables
 [![License](https://img.shields.io/npm/l/secrets-manager.svg)](https://github.com/igorbezsmertnyi/secrets-manager/blob/master/package.json)
 
 <!-- toc -->
+* [Before start](#before-start)
+* [Quick start](#quick-start)
 * [Usage](#usage)
 * [Commands](#commands)
+
+# Before start
+Before starting using `sm-cli` make sure that you have:
+- Installed [AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.pkg)
+- Provided credentials with permission to 
+  * secretsmanager:DescribeSecret
+  * secretsmanager:PutSecretValue
+  * secretsmanager:CreateSecret
+  * secretsmanager:DeleteSecret
+  * secretsmanager:ListSecretVersionIds
+  * secretsmanager:UpdateSecret
+  * secretsmanager:GetSecretValue
+
+# Quick start
+1. Install `sm-cli`
+```sh-session
+$ npm install -g @appnroll/sm-cli
+```
+2. Add the project in AWS Secrets Manager [Read more](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+3. Run init script in project root directory, and provide information about project
+```sh-session
+$ sm-cli init --project project_name --region aws_region
+```
+
+
 <!-- tocstop -->
 # Usage
 <!-- usage -->
