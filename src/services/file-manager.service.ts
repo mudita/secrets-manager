@@ -11,7 +11,26 @@ class FileManager {
   }
 
   public readFile(path: string) {
-    return fs.readFileSync(path, 'utf8')
+    const exists = this.fileExistsSync(path)
+    
+    if (exists) {
+      return fs.readFileSync(path, 'utf8')
+    } else {
+      throw new Error(`File: ${path} doesn't exists`)
+    }
+  }
+
+  public async readOrCreate(path: string) {
+    const exists = this.fileExistsSync(path)
+    if (!exists) {
+      await this.createFile(path, '')
+    }
+
+    return this.readFile(path)
+  }
+
+  public fileExistsSync(path: string) {
+    return fs.existsSync(path)
   }
 
   public async writeFile(path: string, data: any) {

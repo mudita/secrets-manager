@@ -17,11 +17,11 @@ Secrets manager for sharing environment variables
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g sm-cli
+$ npm install -g @appnroll/sm-cli
 $ sm-cli COMMAND
 running command...
 $ sm-cli (-v|--version|version)
-sm-cli/0.0.1 darwin-x64 node-v13.8.0
+@appnroll/sm-cli/0.0.1 darwin-x64 node-v13.8.0
 $ sm-cli --help [COMMAND]
 USAGE
   $ sm-cli COMMAND

@@ -17,10 +17,12 @@ class SecretsManager {
   }
 
   public async syncSecrets(secrets: Record<string, string>) {
-    await this.client.updateSecret({
-      SecretId: this.config.project,
-      SecretString: JSON.stringify(secrets),
-    }).promise()
+    if (Object.keys(secrets).length) {
+      await this.client.updateSecret({
+        SecretId: this.config.project,
+        SecretString: JSON.stringify(secrets),
+      }).promise()
+    }
 
     const response = await this.fetchSecrets()
     return response

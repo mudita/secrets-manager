@@ -34,17 +34,22 @@ export default class Sync extends Command {
 
     await cli.action.start('starting a process', 'initializing')
 
-    const envs = await this.fileManager.readFile(Files.Env)
+    const envs = await this.fileManager.readOrCreate(Files.Env)
     const formattedEnvs = envs.split('\n').reduce((acc: Record<string, string>, line: string) => {
       const [key, value] = line.split('=')
-      acc[key] = value.replace(/'/g, '')
+      const variable = value?.replace(/'/g, '')
+      
+      if (variable) {
+        acc[key] = variable
+      }
+
       return acc
     }, {})
 
     const secrets = await this.secretsManager.syncSecrets(formattedEnvs)
     const envsList = Object.entries(secrets).map(([key, value]) => `${key}='${value}'`).join('\n')
 
-    await this.fileManager.createFile(Files.Env, envsList)
+    await this.fileManager.writeFile(Files.Env, envsList)
 
     await cli.action.stop('env\'s successfully synced')
   }
