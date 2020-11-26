@@ -21,7 +21,7 @@ $ npm install -g @appnroll/sm-cli
 $ sm-cli COMMAND
 running command...
 $ sm-cli (-v|--version|version)
-@appnroll/sm-cli/0.0.1 darwin-x64 node-v13.8.0
+@appnroll/sm-cli/0.0.2 darwin-x64 node-v13.8.0
 $ sm-cli --help [COMMAND]
 USAGE
   $ sm-cli COMMAND
@@ -57,7 +57,7 @@ EXAMPLES
   $ sm-cli add -k VARIABLE_KEY -v VARIABLE_VALUE
 ```
 
-_See code: [src/commands/add.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/add.ts)_
+_See code: [src/commands/add.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.2/src/commands/add.ts)_
 
 ## `sm-cli display`
 
@@ -74,7 +74,7 @@ EXAMPLE
   $ sm-cli display
 ```
 
-_See code: [src/commands/display.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/display.ts)_
+_See code: [src/commands/display.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.2/src/commands/display.ts)_
 
 ## `sm-cli fetch`
 
@@ -93,7 +93,7 @@ EXAMPLES
   $ sm-cli fetch -p PROFILE_NAME
 ```
 
-_See code: [src/commands/fetch.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/fetch.ts)_
+_See code: [src/commands/fetch.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.2/src/commands/fetch.ts)_
 
 ## `sm-cli help [COMMAND]`
 
@@ -130,7 +130,7 @@ EXAMPLES
   $ sm-cli init -p PROJECT_NAME -r SECRETS_MANAGER_REGION
 ```
 
-_See code: [src/commands/init.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.2/src/commands/init.ts)_
 
 ## `sm-cli remove`
 
@@ -149,7 +149,7 @@ EXAMPLES
   $ sm-cli remove -k VARIABLE_KEY
 ```
 
-_See code: [src/commands/remove.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/remove.ts)_
+_See code: [src/commands/remove.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.2/src/commands/remove.ts)_
 
 ## `sm-cli sync`
 
@@ -168,7 +168,7 @@ EXAMPLES
   $ sm-cli fetch -p PROFILE_NAME
 ```
 
-_See code: [src/commands/sync.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/sync.ts)_
+_See code: [src/commands/sync.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.2/src/commands/sync.ts)_
 
 ## `sm-cli update`
 
@@ -188,5 +188,5 @@ EXAMPLES
   $ sm-cli update -k VARIABLE_KEY -v VARIABLE_VALUE
 ```
 
-_See code: [src/commands/update.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/update.ts)_
+_See code: [src/commands/update.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.2/src/commands/update.ts)_
 <!-- commandsstop -->

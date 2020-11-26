@@ -1,7 +1,7 @@
 {
   "name": "@appnroll/sm-cli",
   "description": "Secrets manager for sharing environment variables",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "appnroll @igorbezsmertnyi",
   "bin": {
     "sm-cli": "./bin/run"
