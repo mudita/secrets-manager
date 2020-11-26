@@ -9,7 +9,7 @@ import {Files} from '../constants'
 export default class Update extends Command {
   private fileManager = new FileManager()
 
-  static description = 'This command used to update existing variant in .env file'
+  static description = 'This command used to update existing variable in .env file'
 
   static examples = [
     '$ sm-cli update',

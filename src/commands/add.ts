@@ -9,7 +9,7 @@ import {Files} from '../constants'
 export default class Add extends Command {
   private fileManager = new FileManager()
 
-  static description = 'This command used to adding new variant to .env file'
+  static description = 'This command used to adding new variable to .env file'
 
   static examples = [
     '$ sm-cli add',

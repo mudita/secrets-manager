@@ -65,6 +65,20 @@ class FileManager {
 
     return this.writeFile(path, tmpArr.join('\n'))
   }
+
+  public async removeLine(path: string, lineKey: string) {
+    const file = await this.readFile(path)
+
+    const tmpArr = file.split('\n')
+    const lineIndex = tmpArr.findIndex((item: string) => {
+      const key = item.split('=')[0]
+      return key === lineKey
+    })
+
+    tmpArr.splice(lineIndex, 1)
+
+    return this.writeFile(path, tmpArr.join('\n'))
+  }
 }
 
 export default FileManager
