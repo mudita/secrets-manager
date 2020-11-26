@@ -35,12 +35,13 @@ USAGE
 * [`sm-cli fetch`](#sm-cli-fetch)
 * [`sm-cli help [COMMAND]`](#sm-cli-help-command)
 * [`sm-cli init`](#sm-cli-init)
+* [`sm-cli remove`](#sm-cli-remove)
 * [`sm-cli sync`](#sm-cli-sync)
 * [`sm-cli update`](#sm-cli-update)
 
 ## `sm-cli add`
 
-This command used to adding new variant to .env file
+This command used to adding new variable to .env file
 
 ```
 USAGE
@@ -131,6 +132,25 @@ EXAMPLES
 
 _See code: [src/commands/init.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/init.ts)_
 
+## `sm-cli remove`
+
+This command used to removing new variable from .env file
+
+```
+USAGE
+  $ sm-cli remove
+
+OPTIONS
+  -h, --help     show CLI help
+  -k, --key=key  variable key
+
+EXAMPLES
+  $ sm-cli remove
+  $ sm-cli remove -k VARIABLE_KEY
+```
+
+_See code: [src/commands/remove.ts](https://github.com/appnroll/secrets-manager/blob/v0.0.1/src/commands/remove.ts)_
+
 ## `sm-cli sync`
 
 This command used to sync variable from local environment with AWS SecretsManager
@@ -152,7 +172,7 @@ _See code: [src/commands/sync.ts](https://github.com/appnroll/secrets-manager/bl
 
 ## `sm-cli update`
 
-This command used to update existing variant in .env file
+This command used to update existing variable in .env file
 
 ```
 USAGE
