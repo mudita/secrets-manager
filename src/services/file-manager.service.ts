@@ -39,7 +39,10 @@ class FileManager {
 
   public async lineExistsInFile(path: string, line: string) {
     const existedFile = await this.readFile(path)
-    return existedFile.includes(line)
+    return Boolean(existedFile.split('\n').find((line: string) => {
+      const [key,] = line.split('=')
+      return key === line
+    }))
   }
 
   public async appendLineIfNotExists(path: string, line: string) {
